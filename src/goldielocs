@@ -1,0 +1,199 @@
+#!/bin/bash
+
+# ------------------------------------------------------------------------------- 
+# >%<#>%<#>%<#>%<#>%<#>%<#>%<#>%<#>%<#>%<#>%<#>%<#>%<#>%<#>%<#>%<#>%<#>%<#>%<#>%<
+# ------------------------------------------------------------------------------- 
+#
+# goldielocs 
+#
+# A directory bookmarking utility intended for shell integration.
+# The output of this command should be evaluated directly by a shell.
+# Known working shells are bash, zsh, and rc, though others may work.
+#
+# -------------------------------------------------------------------------------
+# INSTALLATION:
+#
+# Install anywhere in $PATH.
+# This script is intended for use via a shell function.
+# See the examples below for possible implementations.
+#
+# Example for bash:
+# go() { eval "$(/path/to/$0 $*)" }
+#
+# Example for rc:
+# fn go {eval `{/path/to/$0 $*}}
+#
+# -------------------------------------------------------------------------------
+# LICENSE (New BSD):
+#
+# Copyright (c) 2010, Canaan Silberberg All rights reserved.
+# 
+# Redistribution and use in source and binary forms, with or without
+# modification, are permitted provided that the following conditions are met:
+# 
+# Redistributions of source code must retain the above copyright notice, this
+# list of conditions and the following disclaimer. 
+#
+# Redistributions in binary form must reproduce the above copyright notice,
+# this list of conditions and the following disclaimer in the documentation
+# and/or other materials provided with the distribution. 
+#
+# The name of the author may not be used to endorse or promote products derived
+# from this software without specific prior written permission.  
+#
+# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+# AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+# IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+# ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+# LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+# CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+# SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+# INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+# CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+# ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+# POSSIBILITY OF SUCH DAMAGE.
+# ------------------------------------------------------------------------------- 
+# >%<#>%<#>%<#>%<#>%<#>%<#>%<#>%<#>%<#>%<#>%<#>%<#>%<#>%<#>%<#>%<#>%<#>%<#>%<#>%<
+# ------------------------------------------------------------------------------- 
+
+
+export LOCSFILE=$HOME/.goldielocs
+export EXIT_SUCCESS=0;
+export EXIT_BADARGS=1;
+export EXIT_ERROR=2;
+
+
+##
+# Prints command to print usage message
+#
+usage()
+{
+  cat <<"  EOF"
+    echo Usage:;
+    echo;
+    echo 'goldielocs [help|list|locsfile|store|alias]';
+    echo 'man 1 goldielocs for details';
+  EOF
+}
+
+
+##
+# Exit with a fatal error
+#
+# @param $*
+# The error message to display
+#
+fatal()
+{
+  echo "echo $*"
+  exit $EXIT_ERROR;
+}
+
+
+##
+# Prints command to show the locations
+# currently stored
+#
+list()
+{
+  cat <<EOF
+    echo '$LOCSFILE';
+    echo '---';
+    cat '$LOCSFILE';
+EOF
+}
+
+
+##
+# Prints command to show the
+# path to the locs file
+#
+print() 
+{
+  echo -n "echo -n '$LOCSFILE'";
+}
+
+
+##
+# Stores the current location with the
+# given name as an alias.
+#
+# @param $1
+# The alias string to use
+#
+store() 
+{
+  cwd=$(pwd);
+
+  echo $1 $cwd >> "$LOCSFILE";
+	echo echo Stored $cwd as $1
+}
+
+
+##
+# Prints command to cd to the first location
+# matching the given String.
+#
+# @param $1
+# The String to match 
+#
+move() 
+{ 
+	dir=$(awk '/^'$1'/ {print $2; exit}' "$LOCSFILE")
+
+  if [ -z "$dir" ];
+  then
+    fatal Unknown Location: $1;
+  fi
+
+  cat <<EOF
+    cd '$dir';
+    echo 'New Location: $dir';
+EOF
+}
+
+
+##
+# Main
+#
+# @param $@
+# Expects the full list of CLI args as $@
+#
+main()
+{
+  if [ ! -r $LOCSFILE ];
+  then
+    touch $LOCSFILE;
+  fi
+
+  case $1 in
+    lo*) 
+      print; exit $EXIT_SUCCESS
+      ;;
+
+    l*) 
+       list; exit $EXIT_SUCCESS
+       ;;
+
+    s*) 
+      store "$2"; exit $EXIT_SUCCESS
+      ;;
+
+    a*) 
+      move "$2"; exit $EXIT_SUCCESS
+      ;;
+
+    h*) 
+      usage; exit $EXIT_SUCCESS
+      ;;
+
+    *)
+      echo echo Unknown argument \'$1\'\; echo\;
+      usage; exit $EXIT_BADARGS
+      ;;
+
+  esac
+}
+
+
+main $@;
