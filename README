@@ -38,6 +38,20 @@ New Location: /some/path/which/is/irritating/to/type/often
 
 
 ------------------------------------------------------------------------------- 
+Quick Install (for bash):
+------------------------------------------------------------------------------- 
+
+The following bit is the fast install, 
+for folks who don't want the hows or whys.
+
+This assumes /usr/local/bin/ is in your PATH.
+
+sudo make install
+echo 'go() { eval $(goldielocs "$*"); }' >> $HOME/.bashrc
+source $HOME/.bashrc
+
+
+------------------------------------------------------------------------------- 
 Installation:
 ------------------------------------------------------------------------------- 
 
@@ -62,8 +76,5 @@ For bash or zsh:
 
 For rc:
   fn go { eval `{goldielocs $*}}
-
-After defining the shell functions,
-goldielocs should be functioning properly.
 
 

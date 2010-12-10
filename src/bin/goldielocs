@@ -23,6 +23,14 @@
 # fn go {eval `{/path/to/$0 $*}}
 #
 # -------------------------------------------------------------------------------
+# NOTES:
+#
+# goldielocs attempts to output shell commands which will work
+# for each target shell, the major differences being between
+# bash/zsh/etc and rc. The result of this is occasionally odd
+# cat/echo commands in the src here.
+#
+# -------------------------------------------------------------------------------
 # LICENSE (New BSD):
 #
 # Copyright (c) 2010, Canaan Silberberg All rights reserved.
