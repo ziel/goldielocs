@@ -5,8 +5,8 @@ INSTALLDIR=/usr/local
 BINDIR=${INSTALLDIR}/bin
 MANDIR=${INSTALLDIR}/man/man1
 
-SRC_BINDIR=${PWD}/src/bin
-SRC_MANDIR=${PWD}/src/man
+SRC_BINDIR=src/bin
+SRC_MANDIR=src/man
 
 all: install
 
