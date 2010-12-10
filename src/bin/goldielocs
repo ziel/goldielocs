@@ -141,7 +141,7 @@ cmd_add()
   cwd=$(pwd);
 
   echo $1 $cwd >> "$LOCSFILE";
-	echo echo Stored $cwd as $1
+  echo echo Stored $cwd as $1
 }
 
 
@@ -154,7 +154,7 @@ cmd_add()
 #
 cmd_to() 
 { 
-	dir=$(awk '/^'$1'/ {print $2; exit}' "$LOCSFILE")
+  dir=$(awk '/^'$1'/ {print $2; exit}' "$LOCSFILE")
 
   if [ -z "$dir" ];
   then
