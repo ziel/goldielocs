@@ -7,8 +7,7 @@
 # goldielocs 
 #
 # A directory bookmarking utility intended for shell integration.
-# The output of this command should be evaluated by a shell.
-# Known working shells are bash, zsh, and rc, though others may work.
+# Outputs shell commands for various bookmarking tasks.
 #
 # -------------------------------------------------------------------------------
 # INSTALLATION:
@@ -18,7 +17,7 @@
 # See the examples below for possible implementations.
 #
 # Example for bash:
-# go() { eval "$(/path/to/$0 $*)" }
+# go() { eval $(/path/to/$0 "$*";) }
 #
 # Example for rc:
 # fn go {eval `{/path/to/$0 $*}}
