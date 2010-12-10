@@ -28,7 +28,9 @@ Store a directory and come back to it later.
 % cd /some/path/which/is/irritating/to/type/often
 % go add somename
 Stored /some/path/which/is/irritating/to/type/often as somename
+
 ... time passes ...
+
 % go to somename
 New Location: /some/path/which/is/irritating/to/type/often
 % pwd
