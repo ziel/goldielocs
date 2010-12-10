@@ -1,24 +1,62 @@
 .TH goldielocs 1 "December, 2010" "Version: 0.1" "User Commands"
 .SH NAME
 goldielocs
-.SH SYNPOSIS
+.SH SYNOPSIS
 goldielocs command [command args]
 
 .SH DESCRIPTION
-Description placeholder here...
+A simple directory bookmarking utility for interactive shells.
+
+Goldielocs outputs shell commands -- it wants to be evaluated.
+A shell alias such as go() { eval $(goldielocs "$*";); } for bash
+allows it to integrate into the shell... in this case, masquerading as the command: go.
+
+Goldielocs outputs commands which should work with bash, zsh, rc, and possibly others.
+In the COMMANDS section below, the descriptions are written as if goldielocs'
+output were evaluated. Goldielocs, of course, merely prints the commands to do
+these things.
 
 .SH COMMANDS
+
+.SS 
+file
+prints the path to the locsfile where the alias/path pairs are stored
 
 .SS 
 list
 lists all known locations and aliases
 
 .SS 
-placeholder
-placeholder command entry here...
+add <aliasname>
+adds the current working directory to the locsfile with the alias <aliasname>
+
+.SS 
+to <searchstring>
+changes to the first path whose alias name matches searchstring
+
+.SS 
+help
+prints a terse help message
+
+.SH MISC
+
+.SS 
+Command Abbreviation:
+Commands can be abbreviated to a single letter.
+Actually, the first letter is the only important part. list, for instance could
+be written 'list','ls','l','lis', or even 'lkjhgfdsa'.
+
+.SS
+Alias Searching:
+Aliases are matched from the start of the word and in the order in which they
+appear in the locsfile. The ordering can be adjusted by editing the file directly.
+.TP
+bash: $EDITOR $(go f)
+.TP
+rc: plumb `{go f}
 
 .SH HISTORY
 .TP 8
-2009 Original implementation written in rc by Canaan
+2009 Original implementation written in rc
 .TP
 2010 Ported to bash 
