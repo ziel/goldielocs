@@ -7,7 +7,7 @@
 # goldielocs 
 #
 # A directory bookmarking utility intended for shell integration.
-# The output of this command should be evaluated directly by a shell.
+# The output of this command should be evaluated by a shell.
 # Known working shells are bash, zsh, and rc, though others may work.
 #
 # -------------------------------------------------------------------------------
@@ -63,6 +63,11 @@ export EXIT_BADARGS=1;
 export EXIT_ERROR=2;
 
 
+# -------------------------------------------------------------------------------
+# Utility Funcs
+# -------------------------------------------------------------------------------
+
+
 ##
 # Prints command to print usage message
 #
@@ -70,9 +75,14 @@ usage()
 {
   cat <<"  EOF"
     echo Usage:;
+    echo ' ' 'goldielocs command';
     echo;
-    echo 'goldielocs [help|list|locsfile|store|alias]';
-    echo 'man 1 goldielocs for details';
+    echo 'Commands';
+    echo ' ' 'h, help: print this message';
+    echo ' ' 'f, file: print path to aliases file';
+    echo ' ' 'l, list: print contents of aliases file';
+    echo ' ' 'a, add <alias_name>: add CWD as alias <alias_name>';
+    echo ' ' 't, to <search_str>: cd to first alias match for <search_str>';
   EOF
 }
 
@@ -90,11 +100,16 @@ fatal()
 }
 
 
+# -------------------------------------------------------------------------------
+# User Commands
+# -------------------------------------------------------------------------------
+
+
 ##
 # Prints command to show the locations
 # currently stored
 #
-list()
+cmd_list()
 {
   cat <<EOF
     echo '$LOCSFILE';
@@ -108,7 +123,7 @@ EOF
 # Prints command to show the
 # path to the locs file
 #
-print() 
+cmd_file() 
 {
   echo -n "echo -n '$LOCSFILE'";
 }
@@ -121,7 +136,7 @@ print()
 # @param $1
 # The alias string to use
 #
-store() 
+cmd_add() 
 {
   cwd=$(pwd);
 
@@ -137,7 +152,7 @@ store()
 # @param $1
 # The String to match 
 #
-move() 
+cmd_to() 
 { 
 	dir=$(awk '/^'$1'/ {print $2; exit}' "$LOCSFILE")
 
@@ -151,6 +166,11 @@ move()
     echo 'New Location: $dir';
 EOF
 }
+
+
+# -------------------------------------------------------------------------------
+# Main
+# -------------------------------------------------------------------------------
 
 
 ##
@@ -167,26 +187,33 @@ main()
   fi
 
   case $1 in
-    lo*) 
-      print; exit $EXIT_SUCCESS
+
+    # command: file
+    f*) 
+      cmd_file; exit $EXIT_SUCCESS
       ;;
 
+    # command: list
     l*) 
-       list; exit $EXIT_SUCCESS
+       cmd_list; exit $EXIT_SUCCESS
        ;;
 
-    s*) 
-      store "$2"; exit $EXIT_SUCCESS
-      ;;
-
+    # command: add
     a*) 
-      move "$2"; exit $EXIT_SUCCESS
+      cmd_add "$2"; exit $EXIT_SUCCESS
       ;;
 
+    # command: to
+    t*) 
+      cmd_to "$2"; exit $EXIT_SUCCESS
+      ;;
+
+    # command: help
     h*) 
       usage; exit $EXIT_SUCCESS
       ;;
 
+    # command: <unknown>
     *)
       echo echo Unknown argument \'$1\'\; echo\;
       usage; exit $EXIT_BADARGS
