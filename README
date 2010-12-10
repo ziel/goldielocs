@@ -31,6 +31,8 @@ Stored /some/path/which/is/irritating/to/type/often as somename
 ... time passes ...
 % go to somename
 New Location: /some/path/which/is/irritating/to/type/often
+% pwd
+/some/path/which/is/irritating/to/type/often
 
 
 ------------------------------------------------------------------------------- 
