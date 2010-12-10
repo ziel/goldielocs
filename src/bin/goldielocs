@@ -79,8 +79,8 @@ usage()
     echo;
     echo 'Commands';
     echo ' ' 'h, help: print this message';
-    echo ' ' 'f, file: print path to aliases file';
-    echo ' ' 'l, list: print contents of aliases file';
+    echo ' ' 'f, file: print path to locs file';
+    echo ' ' 'l, list: print contents of locs file';
     echo ' ' 'a, add <alias_name>: add CWD as alias <alias_name>';
     echo ' ' 't, to <search_str>: cd to first alias match for <search_str>';
   EOF
