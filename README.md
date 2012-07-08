@@ -36,10 +36,12 @@ for folks who don't want the hows or whys.
 
 This assumes /usr/local/bin/ is in your PATH.
 
+```
 sudo make install
 echo 'go() { eval $(goldielocs "$*"); }' >> $HOME/.bashrc
 source $HOME/.bashrc
 
+```
 
 Installation:
 -----
