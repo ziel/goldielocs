@@ -40,7 +40,6 @@ This assumes /usr/local/bin/ is in your PATH.
 sudo make install
 echo 'go() { eval $(goldielocs "$*"); }' >> $HOME/.bashrc
 source $HOME/.bashrc
-
 ```
 
 Installation:
