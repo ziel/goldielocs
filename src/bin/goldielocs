@@ -90,6 +90,7 @@ usage()
     echo ' ' 'l, list: print contents of locs file';
     echo ' ' 'a, add <alias_name>: add CWD as alias <alias_name>';
     echo ' ' 't, to <search_str>: cd to first alias match for <search_str>';
+    echo ' ' 'e, edit: edit the goldielocs file with EDITOR';
   EOF
 }
 
@@ -175,6 +176,21 @@ EOF
 }
 
 
+##
+# Opens $LOCSFILE in $EDITOR
+# ... for editing
+#
+cmd_edit()
+{
+  if [ -z "$LOCSFILE" ];
+  then
+    fatal EDITOR is not set
+  fi
+
+  echo "$EDITOR" "$LOCSFILE"
+}
+
+
 # -------------------------------------------------------------------------------
 # Main
 # -------------------------------------------------------------------------------
@@ -213,6 +229,11 @@ main()
     # command: to
     t*)
       cmd_to "$2"; exit $EXIT_SUCCESS
+      ;;
+
+    # command: edit
+    e*)
+      cmd_edit; exit $EXIT_SUCCESS
       ;;
 
     # command: help
