@@ -1,5 +1,6 @@
 Goldielocs
 =====
+v1.0.0
 
 A simple directory bookmarking utility for interactive shells.
 
