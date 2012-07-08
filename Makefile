@@ -13,7 +13,8 @@ all: install
 install:
 	@mkdir -p ${BINDIR}
 	@mkdir -p ${MANDIR}
-	@cp ${SRC_BINDIR}/goldielocs ${BINDIR}
+	@cp ${SRC_BINDIR}/goldielocs ${BINDIR}/goldielocs
+	@chmod 755 ${BINDIR}/goldielocs
 	@echo Script installed in: ${BINDIR}
 	@cat ${SRC_MANDIR}/goldielocs.1 | gzip > ${MANDIR}/goldielocs.1.gz
 	@echo Man page installed in: ${MANDIR}
