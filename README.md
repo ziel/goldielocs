@@ -80,5 +80,5 @@ fn go { eval `{goldielocs $*}}
 Tips n' all
 -----
 
-* Another handy alias: alias 2="go to"
+* A handy alias for zsh or bash: alias 2="go to"
 * To use the edit command with rc, set EDITOR = plumb
