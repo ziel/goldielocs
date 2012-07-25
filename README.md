@@ -83,4 +83,4 @@ Tips n' all
 * A handy alias for the quick go to:
     * for zsh or bash: alias 2="go to"
     * for rc: fn 2 { go to $* }
-* To use the edit command with rc, set EDITOR = plumb
+* To use the edit command with rc, try setting EDITOR = plumb (assuming you have a plumber running)
