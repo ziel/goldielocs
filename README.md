@@ -69,18 +69,18 @@ will be using it.
 
 For bash or zsh:
 ```
-go() { eval $(goldielocs "$*"); }
+goldielocs() { eval $($HOME/bin/goldielocs "$*"); }
 ```
 
 For rc:
 ```
-fn go { eval `{goldielocs $*}}
+fn goldielocs { eval `{$home/bin/goldielocs $*}}
 ```
 
 Tips n' all
 -----
 
 * A handy alias for the quick go to:
-    * for zsh or bash: alias 2="go to"
-    * for rc: fn 2 { go to $* }
+    * for zsh or bash: alias 2="goldielocs to"
+    * for rc: fn 2 { goldielocs to $* }
 * To use the edit command with rc, try setting EDITOR = plumb (assuming you have a plumber running)

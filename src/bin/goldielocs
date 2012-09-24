@@ -17,10 +17,10 @@
 # See the examples below for possible implementations.
 #
 # Example for bash:
-# go() { eval $(/path/to/$0 "$*";) }
+# goldielocs() { eval $(/path/to/$0 "$*";) }
 #
 # Example for rc:
-# fn go {eval `{/path/to/$0 $*}}
+# fn goldielocs {eval `{/path/to/$0 $*}}
 #
 # -------------------------------------------------------------------------------
 # NOTES:
