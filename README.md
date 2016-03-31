@@ -12,12 +12,14 @@ zsh
 ## Example Usage:
 
 Store a directory and come back to it later.
-``` % cd /some/path/which/is/irritating/to/type/often
+```
+% cd /some/path/which/is/irritating/to/type/often
 % goldielocs add somename
 Stored /some/path/which/is/irritating/to/type/often as somename
 ```
 
 ... time passes ...
+
 
 ```
 % goldielocs to somename
