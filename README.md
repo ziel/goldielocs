@@ -9,8 +9,7 @@ bash
 zsh
 
 
-Example Usage:
---------------
+## Example Usage:
 
 Store a directory and come back to it later.
 ```
@@ -28,8 +27,7 @@ New Location: /some/path/which/is/irritating/to/type/often
 /some/path/which/is/irritating/to/type/often
 ```
 
-Quick Install (for bash):
------
+## Quick Install (for bash):
 
 The following bit is the fast install,
 for folks who don't want the hows or whys.
@@ -42,8 +40,7 @@ echo 'goldielocs() { eval $(/usr/bin/env goldielocs "$*"); }' >> $HOME/.bashrc
 source $HOME/.bashrc
 ```
 
-Installation:
------
+## Installation:
 
 The script and man page can be installed via make as follows:
 
@@ -71,8 +68,7 @@ For bash or zsh:
 goldielocs() { eval $(/usr/bin/env goldielocs "$*"); }
 ```
 
-Tips n' all
------
+## Tips n' all
 
 A handy alias for the quick go to for zsh or bash:
 ```
