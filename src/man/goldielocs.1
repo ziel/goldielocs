@@ -5,16 +5,17 @@ goldielocs
 goldielocs command [command args]
 
 .SH DESCRIPTION
-A simple directory bookmarking utility for interactive shells.
+A (very) simple directory bookmarking utility for interactive shells.
 
-Goldielocs outputs shell commands -- it wants to be evaluated.
-A shell alias such as go() { eval $(goldielocs "$*";); } for bash
-allows it to integrate into the shell... in this case, masquerading as the command: go.
+Goldielocs outputs shell commands -- it wants to be evaluated.  A shell
+function such as goldielocs() { eval $(/usr/bin/env goldielocs "$*";); } for
+bash or zsh allows it to integrate into the shell.
 
-Goldielocs outputs commands which should work with bash, zsh, rc, and possibly others.
-In the COMMANDS section below, the descriptions are written as if goldielocs'
-output were evaluated. Goldielocs, of course, merely prints the commands to do
-these things.
+Goldielocs outputs commands which should work with bash, zsh, and possibly
+others. In the COMMANDS section below, the descriptions are written as if
+goldielocs' output were evaluated. Goldielocs, of course, merely prints the
+commands to do these things. This distinction is less visible once the
+function is installed.
 
 .SH COMMANDS
 
@@ -47,13 +48,14 @@ prints a terse help message
 .SS
 Command Abbreviation:
 Commands can be abbreviated to a single letter.
-Actually, the first letter is the only important part. list, for instance could
-be written 'list','ls','l','lis', or even 'lkjhgfdsa'.
+Actually, the first letter is the only important part. list, for instance
+could be written 'list','ls','l','lis', or even 'lkjhgfdsa'.
 
 .SS
 Alias Searching:
 Aliases are matched from the start of the word and in the order in which they
-appear in the locsfile. The ordering can be adjusted by editing the file directly.
+appear in the locsfile. The ordering can be adjusted by editing the file
+directly.
 .TP
 bash: $EDITOR $(go f)
 .TP
@@ -64,3 +66,5 @@ rc: plumb `{go f}
 2009 Original implementation written in rc
 .TP
 2010 Ported to bash
+.TP
+2016 Updated docs for new names

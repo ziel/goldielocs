@@ -1,29 +1,28 @@
 Goldielocs
-=====
-v1.0.1
+==========
+v1.0.2
 
-A simple directory bookmarking utility for interactive shells.
+A (very) simple directory bookmarking utility for interactive shells.
 
 Tested with:
 bash
 zsh
-rc
 
 
 Example Usage:
------
+--------------
 
 Store a directory and come back to it later.
 ```
 % cd /some/path/which/is/irritating/to/type/often
-% go add somename
+% goldielocs add somename
 Stored /some/path/which/is/irritating/to/type/often as somename
 ```
 
 ... time passes ...
 
 ```
-% go to somename
+% goldielocs to somename
 New Location: /some/path/which/is/irritating/to/type/often
 % pwd
 /some/path/which/is/irritating/to/type/often
@@ -39,7 +38,7 @@ This assumes /usr/local/bin/ is in your PATH.
 
 ```
 sudo make install
-echo 'go() { eval $(goldielocs "$*"); }' >> $HOME/.bashrc
+echo 'goldielocs() { eval $(/usr/bin/env goldielocs "$*"); }' >> $HOME/.bashrc
 source $HOME/.bashrc
 ```
 
@@ -69,18 +68,20 @@ will be using it.
 
 For bash or zsh:
 ```
-goldielocs() { eval $($HOME/bin/goldielocs "$*"); }
-```
-
-For rc:
-```
-fn goldielocs { eval `{$home/bin/goldielocs $*}}
+goldielocs() { eval $(/usr/bin/env goldielocs "$*"); }
 ```
 
 Tips n' all
 -----
 
-* A handy alias for the quick go to:
-    * for zsh or bash: alias 2="goldielocs to"
-    * for rc: fn 2 { goldielocs to $* }
-* To use the edit command with rc, try setting EDITOR = plumb (assuming you have a plumber running)
+A handy alias for the quick go to for zsh or bash:
+```
+alias 2="goldielocs to"
+```
+
+then you can:
+```
+% 2 someplace
+New Location: /path/to/someplace
+```
+
